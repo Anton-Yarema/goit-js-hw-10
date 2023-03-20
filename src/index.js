@@ -25,7 +25,7 @@ function onSearch(searchQuerry) {
 }
 
 function renderMarkup(countries) {
-  if (countries.length > 2 && countries.length < 10) {
+  if (countries.length >= 2 && countries.length <= 10) {
     renderCountryList(countries);
   } else if (countries.length > 10) {
     Notiflix.Notify.info(

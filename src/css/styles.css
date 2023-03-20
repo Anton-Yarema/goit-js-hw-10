@@ -19,6 +19,10 @@ body {
   margin-bottom: 16px;
 }
 
+#search-box:focus {
+  outline: solid 1px rgb(0, 89, 255);
+}
+
 .country-item {
   display: flex;
   align-items: center;
