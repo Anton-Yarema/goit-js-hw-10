@@ -21,20 +21,11 @@ function onSearch(searchQuerry) {
     refs.countryInfo.innerHTML = '';
     return;
   }
-  API.fetchCountries(searchQuerry)
-    .then(countries => renderMarkup(countries))
-    .catch(error => {
-      if (error.message === '404') {
-        Notiflix.Notify.failure('Oops, there is no country with that name');
-      }
-    });
+  API.fetchCountries(searchQuerry).then(countries => renderMarkup(countries));
 }
 
 function renderMarkup(countries) {
-  if (countries.length === 0) {
-    refs.countryList.innerHTML = '';
-    refs.countryInfo.innerHTML = '';
-  } else if (countries.length > 2 && countries.length < 10) {
+  if (countries.length > 2 && countries.length < 10) {
     renderCountryList(countries);
   } else if (countries.length > 10) {
     Notiflix.Notify.info(
@@ -59,7 +50,7 @@ function renderCountryInfo(countries) {
         const language = Object.values(languages).join(', ');
         return `
        <div class="title-info__country">
-       <img  src="${svg}" alt="${official}" width="40px" height="40px"/>
+       <img  src="${svg}" alt="${official}" width="40px" height="auto"/>
        <h2 class="title-country">${official}</h2>      
       </div>      
       <p class="title-country__item">Capital: <span class="title-country__value">${capital}</span></p>
@@ -79,7 +70,7 @@ function renderCountryList(countries) {
   const listItems = countries
     .map(({ name: { official }, flags: { svg } }) => {
       return `<div class="country-item">
-    <img src="${svg}" alt="${official}" width="40px" height="40px"/>
+    <img src="${svg}" alt="${official}" width="40px" height="auto"/>
     <span class="country-name">${official}</span></div>`;
     })
     .join('');
