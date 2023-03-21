@@ -11,10 +11,18 @@ function fetchCountries(searchQuerry) {
       }
       return response.json();
     })
-    .then(dataCountry => dataCountry)
-    .catch(() =>
-      Notiflix.Notify.failure('Oops, there is no country with that name')
-    );
+    .then(dataCountry => {
+      if (dataCountry === undefined) {
+        Notiflix.Notify.failure('Oops, something went wrong');
+        return [];
+      }
+      return dataCountry;
+    })
+    .catch(() => {
+      Notiflix.Notify.failure('Oops, something went wrong');
+      return [];
+    });
 }
+
 
 export default { fetchCountries };

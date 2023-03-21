@@ -21,7 +21,7 @@ function onSearch(searchQuerry) {
     refs.countryInfo.innerHTML = '';
     return;
   }
-  API.fetchCountries(searchQuerry).then(countries => renderMarkup(countries));
+  API.fetchCountries(searchQuerry).then(countries => renderMarkup(countries))
 }
 
 function renderMarkup(countries) {
@@ -31,8 +31,11 @@ function renderMarkup(countries) {
     Notiflix.Notify.info(
       'Too many matches found. Please enter a more specific name.'
     );
-  } else {
+  } else if (countries.length === 1) {
     renderCountryInfo(countries);
+  } else { 
+    refs.countryList.innerHTML = '';
+    refs.countryInfo.innerHTML = '';
   }
 }
 
